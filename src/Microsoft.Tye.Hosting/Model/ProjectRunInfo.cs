@@ -31,13 +31,14 @@ namespace Microsoft.Tye.Hosting.Model
 
         public Dictionary<string, string> BuildProperties { get; } = new Dictionary<string, string>();
 
-        public string? Args { get; }
+        public string? Args { get; set; } = default!;
         public bool Build { get; }
         public FileInfo ProjectFile { get; }
         public string TargetFrameworkName { get; set; } = default!;
         public string TargetFrameworkVersion { get; set; } = default!;
         public string TargetFramework { get; }
         public bool IsAspNet { get; }
+
         public string Version { get; }
 
         public string AssemblyName { get; }
@@ -46,7 +47,7 @@ namespace Microsoft.Tye.Hosting.Model
 
         public string PublishOutputPath { get; }
 
-        public string RunCommand { get; }
+        public string RunCommand { get; set; } = default!;
         public string RunArguments { get; }
 
         public string? ContainerBaseTag { get; }

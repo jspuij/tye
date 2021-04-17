@@ -373,7 +373,7 @@ namespace Microsoft.Tye.Hosting
                             }
                         };
 
-                        if (_options.Watch && (service.Description.RunInfo is ProjectRunInfo runInfo))
+                        if (_options.Watch && (service.Description.RunInfo is ProjectRunInfo runInfo) && !runInfo.IsAspNet)
                         {
                             var projectFile = runInfo.ProjectFile.FullName;
                             var fileSetFactory = new MsBuildFileSetFactory(_logger,

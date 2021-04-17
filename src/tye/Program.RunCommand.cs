@@ -122,7 +122,7 @@ namespace Microsoft.Tye
                 output.WriteInfoLine("Launching Tye Host...");
                 output.WriteInfoLine(string.Empty);
 
-                await using var host = new TyeHost(application.ToHostingApplication(), options);
+                await using var host = new TyeHost(application.ToHostingApplication(options), options);
                 await host.RunAsync();
             });
 

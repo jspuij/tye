@@ -30,7 +30,7 @@ namespace Microsoft.Tye
             }
         }
 
-        public static Application ToHostingApplication(this ApplicationBuilder application)
+        public static Application ToHostingApplication(this ApplicationBuilder application, HostOptions? options = null)
         {
             var services = new Dictionary<string, Service>();
 
@@ -131,6 +131,12 @@ namespace Microsoft.Tye
                     foreach (var mapping in project.Volumes)
                     {
                         projectInfo.VolumeMappings.Add(new DockerVolume(mapping.Source, mapping.Name, mapping.Target));
+                    }
+
+                    if (options?.Watch ?? false && project.IsAspNet)
+                    {
+                        projectInfo.RunCommand = "dotnet";
+                        projectInfo.Args = string.IsNullOrEmpty(projectInfo.Args) ? "watch run" : $"watch run -- {projectInfo.Args}";
                     }
 
                     runInfo = projectInfo;
